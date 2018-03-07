@@ -1,6 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Enemy.h"
+#include "Entity.h"
+#include <vector>
+using std::vector;
 
 class Application {
 protected:
@@ -36,8 +40,15 @@ Application::~Application() {
 }
 
 void Application::run() {
+    vector<Entity*> entities;
+
     Image playerImage;
     playerImage.loadFromFile(PLAYER_IMAGE_FILE);
+    entities.push_back(new Player(playerImage, 0, 0, 0, 0));
+
+    Image enemyImage;
+    enemyImage.loadFromFile(ENEMY_IMAGE_FILE);
+    entities.push_back(new Enemy(enemyImage, 0, 0, 0, 0));
 
     while (window->isOpen())
     {
@@ -52,10 +63,11 @@ void Application::run() {
             }
         }
 
-
-
         window->clear();
-        window->draw(player.getSprite());
+        for (auto i : entities) {
+            i->update(time);
+            window->draw(i->getSprite());
+        }
         window->display();
     }
 }

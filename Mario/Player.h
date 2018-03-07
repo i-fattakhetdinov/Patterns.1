@@ -3,16 +3,13 @@
 #include "Constants.h"
 #include "Entity.h"
 
-class Player: Entity {
+class Player: public Entity {
 private:
     enum{ left, right, up, down, jump, stay} state;
     //TODO : связать анимацию с состоянием
     int score;
     int ground;
     int life;
-public:
-    Player(Image &image, float xPos, float yPos, int width, int height) :
-        Entity(image, xPos, yPos, width, height), score(0), ground(0), life(START_PLAYER_LIFE) {};
 
     void control() {
         if (Keyboard::isKeyPressed) {
@@ -34,6 +31,9 @@ public:
     }
 
     void checkCollision() {};
+public:
+    Player(Image &image, float xPos, float yPos, int width, int height) :
+        Entity(image, xPos, yPos, width, height), score(0), ground(0), life(START_PLAYER_LIFE) {};
 
     void update(float time) {
         control();

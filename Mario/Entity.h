@@ -10,6 +10,8 @@ protected:
     float xPos, yPos;
     float gravityAcceleration, speed;
     float width, height;
+
+    virtual void checkCollision() {};
 public:
     Entity(Image &image, float xPos, float yPos, int width, int height): 
         xPos(xPos), yPos(yPos), width(width), height(height), speed(0), gravityAcceleration(GRAVITY_ACCELERATION), 
@@ -17,7 +19,7 @@ public:
         texture.loadFromImage(image);
     }
 
-    virtual void checkCollision() {};
-
     virtual void update(float time) {};
+
+    virtual Sprite getSprite() { return sprite; };
 };
