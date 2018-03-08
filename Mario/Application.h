@@ -1,9 +1,10 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Enemy.h"
 #include "Entity.h"
 #include <vector>
+#include "SFML/Graphics.hpp"
+
 using std::vector;
 
 class Application {
